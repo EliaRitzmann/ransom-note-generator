@@ -1,5 +1,3 @@
-import { BackgroundColor } from "./src/util/BackgroundColor";
-
 interface RansomNoteOptions {
   seed?: number;
   backgroundColor?: BackgroundColor;

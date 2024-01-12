@@ -17,7 +17,7 @@ test("generateRansomNoteBufferTest", async () => {
 
 test("generateAndSaveRansomNoteImageTest", async () => {
   const path = "./output";
-  const result = await generateAndSaveRansomNoteImage("Hello World", path);
+  const result = await generateAndSaveRansomNoteImage("Hello World", path, {spacing: 500});
   expect(result).toBeInstanceOf(Object);
   expect(result.text).toBe("Hello World");
   expect(result.options).toBeInstanceOf(Object);

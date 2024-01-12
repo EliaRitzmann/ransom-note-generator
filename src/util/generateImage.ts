@@ -7,12 +7,20 @@ export async function generateImage(
   value: string,
   seed: number,
   backgroundColor: BackgroundColor,
-  space: number
+  spaceing: number
 ): Promise<Buffer> {
+  if (!value) {
+    throw new Error("Value must be provided");
+  }
+
+  if (!isValidSpacing(spaceing)) {
+    throw new Error("Spacing must be between -80 and 500");
+  }
+
   const filePathsOrSpaces = await Promise.all(
     Array.from(value).map(async (char, index) =>
       char === " "
-        ? " " // Return a space for each space in the input string
+        ? " "
         : await getRandomImagePath(char.toLowerCase(), seed, index)
     )
   );
@@ -28,7 +36,7 @@ export async function generateImage(
       filePath === " "
         ? sharp({
             create: {
-              width: 80,
+              width: 81 + spaceing,
               height: 100,
               channels: 4,
               background: backgroundColor,
@@ -49,9 +57,10 @@ export async function generateImage(
   );
 
   const combinedWidth = metadatas.reduce(
-    (acc, metadata) => acc + (metadata.width || 0),
-    0
+    (acc, metadata) => acc + (metadata.width || 0) + spaceing, // Adjust for spacing
+    -spaceing // Start with -space to avoid extra spacing at the beginning
   );
+
   const maxHeight = Math.max(
     ...metadatas.map((metadata) => metadata.height || 0)
   );
@@ -69,6 +78,7 @@ export async function generateImage(
   const imagesToComposite = imageBuffers.map((buffer, index) => {
     const image = { input: buffer, left: leftOffset, top: 0 };
     leftOffset += metadatas[index].width || 0;
+    leftOffset += spaceing; // Adjust for spacing
     return image;
   });
 
@@ -109,4 +119,8 @@ function seededRandom(seed: number) {
 
 function getRandomRotationAngle() {
   return Math.floor(Math.random() * 11) - 5; // Generates a random integer between -5 and 5
+}
+
+function isValidSpacing(spacing: number): boolean {
+  return spacing >= -80 && spacing <= 500;
 }

@@ -1,7 +1,6 @@
 import { RansomNoteOptions } from "../types";
 import fs from "fs";
 import { generateImage } from "./util/generateImage";
-import path from "path";
 import { BACK_GROUND_COLOR } from "./util/BackgroundColor";
 
 async function generateRansomNoteBuffer(
@@ -34,7 +33,7 @@ async function generateAndSaveRansomNoteImage(
   {
     seed = Math.floor(Math.random() * 1000000),
     backgroundColor = BACK_GROUND_COLOR.TRANSPARENT,
-    spacing = 80,
+    spacing = 0,
   }: RansomNoteOptions = {}
 ): Promise<{
   text: string;
