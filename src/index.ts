@@ -1,6 +1,7 @@
 import { RansomNoteOptions } from "../types";
 import fs from "fs";
-import { generateImage } from "./util/getRansomNote";
+import { generateImage } from "./util/generateImage";
+import path from "path";
 
 async function generateRansomNoteBuffer(
   text: string,
@@ -39,7 +40,11 @@ async function generateAndSaveRansomNoteImage(
   options: RansomNoteOptions;
 }> {
   const image = await generateImage(text, seed, backgroundColor, spacing);
-  fs.writeFileSync(outputFolder, image);
+  //create output folder if it doesn't exist
+  if (!fs.existsSync(outputFolder)) {
+    fs.mkdirSync(outputFolder);
+  }
+  fs.writeFileSync(outputFolder + "/"+ text + seed + ".png", image);
   return {
     text,
     options: {
