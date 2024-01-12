@@ -1,8 +1,17 @@
+import { BackgroundColor } from "./src/util/BackgroundColor";
+
 interface RansomNoteOptions {
   seed?: number;
   backgroundColor?: BackgroundColor;
   spacing?: number;
 }
+
+interface BackgroundColor {
+    r: number;
+    g: number;
+    b: number;
+    alpha: number;
+  }
 
 interface RansomNoteResult {
   imageBuffer: Buffer;
@@ -11,7 +20,5 @@ interface RansomNoteResult {
   backgroundColor: string;
   spacing: number;
 }
-
-type BackgroundColor = "black" | "white" | "transparent";
 
 export { RansomNoteOptions, RansomNoteResult, BackgroundColor };

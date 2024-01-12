@@ -12,7 +12,7 @@ export async function generateImage(
   const filePathsOrSpaces = await Promise.all(
     Array.from(value).map(async (char, index) =>
       char === " "
-        ? " "
+        ? " " // Return a space for each space in the input string
         : await getRandomImagePath(char.toLowerCase(), seed, index)
     )
   );
@@ -31,14 +31,14 @@ export async function generateImage(
               width: 80,
               height: 100,
               channels: 4,
-              background: { r: 0, g: 0, b: 0, alpha: 0 },
+              background: backgroundColor,
             },
           })
             .png()
             .toBuffer()
         : await sharp(filePath)
             .rotate(getRandomRotationAngle(), {
-              background: { r: 0, g: 0, b: 0, alpha: 0 },
+              background: backgroundColor,
             })
             .toBuffer()
     )
@@ -61,7 +61,7 @@ export async function generateImage(
       width: combinedWidth,
       height: maxHeight,
       channels: 4,
-      background: { r: 0, g: 0, b: 0, alpha: 0 },
+      background: backgroundColor,
     },
   });
 

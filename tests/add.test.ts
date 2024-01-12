@@ -3,6 +3,7 @@ import {
   generateAndSaveRansomNoteImage,
 } from "../src";
 import fs from "fs";
+import { BACK_GROUND_COLOR } from "../src/util/BackgroundColor";
 
 test("generateRansomNoteBufferTest", async () => {
   const result = await generateRansomNoteBuffer("Hello World");
@@ -10,8 +11,8 @@ test("generateRansomNoteBufferTest", async () => {
   expect(result.text).toBe("Hello World");
   expect(result.options).toBeInstanceOf(Object);
   expect(typeof result.options.seed).toBe("number");
-  expect(result.options.backgroundColor).toBe("transparent");
-  expect(result.options.spacing).toBe(10);
+  expect(result.options.backgroundColor).toBe(BACK_GROUND_COLOR.TRANSPARENT);
+  expect(result.options.spacing).toBe(80);
 });
 
 test("generateAndSaveRansomNoteImageTest", async () => {
@@ -21,12 +22,14 @@ test("generateAndSaveRansomNoteImageTest", async () => {
   expect(result.text).toBe("Hello World");
   expect(result.options).toBeInstanceOf(Object);
   expect(typeof result.options.seed).toBe("number");
-  expect(result.options.backgroundColor).toBe("transparent");
-  expect(result.options.spacing).toBe(10);
+  expect(result.options.backgroundColor).toBe(BACK_GROUND_COLOR.TRANSPARENT);
+  expect(result.options.spacing).toBe(80);
   expect(
     fs.existsSync(path + "/Hello World" + result.options.seed + ".png")
   ).toBe(true);
 
   //clean up
-  fs.unlinkSync(path + "/Hello World" + result.options.seed + ".png");
+  //fs.unlinkSync(path + "/Hello World" + result.options.seed + ".png");
 });
+
+//test image with space
