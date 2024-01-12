@@ -1,11 +1,32 @@
-import { generateRansomNote } from '../src';
+import {
+  generateRansomNoteBuffer,
+  generateAndSaveRansomNoteImage,
+} from "../src";
+import fs from "fs";
 
-test('adds two numbers correctly', async () => {
-  const result = await generateRansomNote("Hello World")
-  expect(result.seed).not.toBe(123);
+test("generateRansomNoteBufferTest", async () => {
+  const result = await generateRansomNoteBuffer("Hello World");
+  expect(result.imageBuffer).toBeInstanceOf(Buffer);
+  expect(result.text).toBe("Hello World");
+  expect(result.options).toBeInstanceOf(Object);
+  expect(typeof result.options.seed).toBe("number");
+  expect(result.options.backgroundColor).toBe("transparent");
+  expect(result.options.spacing).toBe(10);
 });
 
-test('adds two numbers ', async () => {
-    const result = await generateRansomNote("Hello World", {seed: 123})
-    expect(result.seed).toBe(123);
-  });
+test("generateAndSaveRansomNoteImageTest", async () => {
+  const path = "./output";
+  const result = await generateAndSaveRansomNoteImage("Hello World", path);
+  expect(result).toBeInstanceOf(Object);
+  expect(result.text).toBe("Hello World");
+  expect(result.options).toBeInstanceOf(Object);
+  expect(typeof result.options.seed).toBe("number");
+  expect(result.options.backgroundColor).toBe("transparent");
+  expect(result.options.spacing).toBe(10);
+  expect(
+    fs.existsSync(path + "/Hello World" + result.options.seed + ".png")
+  ).toBe(true);
+
+  //clean up
+  fs.unlinkSync(path + "/Hello World" + result.options.seed + ".png");
+});
