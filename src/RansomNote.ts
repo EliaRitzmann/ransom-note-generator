@@ -8,7 +8,11 @@ export class RansomNote {
   private backgroundColor: BackgroundColor;
   private spacing: number;
 
-  public constructor({ seed, backgroundColor, spacing }: RansomNoteOptions = {}) {
+  public constructor({
+    seed,
+    backgroundColor,
+    spacing,
+  }: RansomNoteOptions = {}) {
     this.seed = seed || Math.floor(Math.random() * 1000000);
     this.backgroundColor = backgroundColor || BACK_GROUND_COLOR.TRANSPARENT;
     this.spacing = spacing || 0;
@@ -50,7 +54,7 @@ export class RansomNote {
       seed = Math.floor(Math.random() * 1000000),
       backgroundColor = BACK_GROUND_COLOR.TRANSPARENT,
       spacing = 0,
-    }: RansomNoteOptions
+    }: RansomNoteOptions = {}
   ): Promise<{
     imageBuffer: Buffer;
     text: string;
@@ -64,6 +68,46 @@ export class RansomNote {
         seed,
         backgroundColor,
         spacing,
+      },
+    };
+  }
+
+  public async generateAndSaveRansomNoteImage(
+    text: string,
+    outputFolder: string,
+    { seed, backgroundColor, spacing }: RansomNoteOptions = {}
+  ): Promise<{
+    text: string;
+    filePath: string;
+    options: RansomNoteOptions;
+  }> {
+    const providedSeed = seed || this.seed;
+    const providedBackgroundColor = backgroundColor || this.backgroundColor;
+    const providedSpacing = spacing || this.spacing;
+
+    const image = await generateImage(
+      text,
+      providedSeed,
+      providedBackgroundColor,
+      providedSpacing
+    );
+    //create output folder if it doesn't exist
+    if (!fs.existsSync(outputFolder)) {
+      fs.mkdirSync(outputFolder);
+    }
+
+    //generate timestamp
+    const timestamp = new Date().getTime();
+
+    const filePath = outputFolder + "/" + text + timestamp + ".png";
+    fs.writeFileSync(filePath, image);
+    return {
+      text,
+      filePath,
+      options: {
+        seed: providedSeed,
+        backgroundColor,
+        spacing: providedSpacing,
       },
     };
   }
