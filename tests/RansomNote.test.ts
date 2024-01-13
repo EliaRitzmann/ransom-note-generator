@@ -7,7 +7,7 @@ test("generateBufferTest", async () => {
     });
 
 test("InstantiateRansomNoteObjectWithValuesTest", async () => {
-    const ransomNote = new RansomNote(12);
+    const ransomNote = new RansomNote({ backgroundColor: BACK_GROUND_COLOR.TRANSPARENT, spacing: 10});
     expect(ransomNote).toBeInstanceOf(RansomNote);
-    const result = await ransomNote.generateBuffer("Hello World", {seed: 123, backgroundColor: BACK_GROUND_COLOR.TRANSPARENT, spacing: 10});
-}
+    const result = await ransomNote.generateBuffer("Hello World");
+});
