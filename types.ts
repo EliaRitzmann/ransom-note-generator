@@ -11,12 +11,4 @@ interface BackgroundColor {
     alpha: number;
   }
 
-interface RansomNoteResult {
-  imageBuffer: Buffer;
-  text: string;
-  seed: number;
-  backgroundColor: string;
-  spacing: number;
-}
-
-export { RansomNoteOptions, RansomNoteResult, BackgroundColor };
+export { RansomNoteOptions, BackgroundColor };
