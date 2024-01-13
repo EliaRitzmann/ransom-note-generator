@@ -106,7 +106,7 @@ export class RansomNote {
       filePath,
       options: {
         seed: providedSeed,
-        backgroundColor,
+        backgroundColor: providedBackgroundColor,
         spacing: providedSpacing,
       },
     };
