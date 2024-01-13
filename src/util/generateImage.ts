@@ -92,8 +92,28 @@ export async function generateImage(
 }
 
 async function getRandomImagePath(char: string, seed: number, index: number) {
-  const dirPath = path.resolve(".", "res/images/characters");
-  const files = fs.readdirSync(dirPath);
+  let dirPath: string;
+  let files: string[];
+
+  // Check for the existence of a file or directory specific to your development environment
+  const isDevelopment = fs.existsSync(
+    path.resolve(__dirname, "../../res/images/characters")
+  );
+
+  if (isDevelopment) {
+    // Package when run from source
+    dirPath = path.resolve(__dirname, "../../res/images/characters");
+  } else {
+    // Package when installed
+    dirPath = path.resolve(__dirname, "../res/images/characters");
+  }
+
+  try {
+    files = fs.readdirSync(dirPath);
+    // Continue with your code using the files array
+  } catch (error) {
+    throw new Error(`Error reading directory: ${error}`);
+  }
 
   // Find all files that start with the character
   const charFiles = files.filter(
