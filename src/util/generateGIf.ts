@@ -1,9 +1,10 @@
 import sharp from "sharp";
-const GIFEncoder = require('gifencoder');
-const Canvas = require('canvas');
+const GIFEncoder = require("gifencoder");
+const { createCanvas } = require("canvas");
 import fs from "fs";
 import { BackgroundColor } from "../../types";
 import { RansomNote } from "../RansomNote";
+import { Image, ImageData } from "canvas";
 
 export async function generateGIf(
   text: string,
@@ -63,38 +64,38 @@ export async function generateGIf(
     resizedImages.push(resizedImage);
   }
 
+  const inputFiles = [];
+
+  /*
   //output the resized images
   for (let i = 0; i < numberOfFrames; i++) {
-    fs.writeFileSync(`test${i}.png`, resizedImages[i]);
+    const outputPath = `test${i}.png`;
+    fs.writeFileSync(outputPath, resizedImages[i]);
+    inputFiles.push(outputPath);
   }
+  */
 
-  // Create the gif
   const encoder = new GIFEncoder(maxImageWidth, maxImageHeight);
-  const output = fs.createWriteStream("test.gif");
-  encoder.pipe(output);
+  // stream the results as they are available into myanimated.gif
+  encoder.createReadStream().pipe(fs.createWriteStream("myanimated.gif"));
 
   encoder.start();
+  encoder.setRepeat(0); // 0 for repeat, -1 for no-repeat
+  encoder.setDelay(frameDelay); // frame delay in ms
+  encoder.setQuality(10); // image quality. 10 is default.
 
-  // Loop through the input files.
-resizedImages.forEach(async (data) => {
-    // Create a new Canvas instance.
-    const canvas = Canvas.createCanvas(maxImageWidth, maxImageHeight); // Change the dimensions as needed.
-    const ctx = canvas.getContext('2d');
+  // use node-canvas
+  const canvas = createCanvas(maxImageWidth, maxImageHeight);
+  const ctx = canvas.getContext("2d");
 
-    // Create an ImageData instance from the raw RGBA buffer.
-    const imageData = new Canvas.ImageData(
-        new Uint8ClampedArray(data),
-        canvas.width,
-        canvas.height
-    );
-
-    // Put the ImageData instance into the canvas.
-    ctx.putImageData(imageData, 0, 0);
-
-    // Add the frame to the GIF.
+  for (let i = 0; i < resizedImages.length; i++) {
+    const image = new Image();
+    image.src = resizedImages[i];
+    ctx.drawImage(image, 0, 0);
     encoder.addFrame(ctx);
-});
+  }
 
+  encoder.finish();
 
   return "test";
 }
