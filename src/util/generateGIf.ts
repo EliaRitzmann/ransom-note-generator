@@ -27,7 +27,7 @@ export async function generateGIf(
 
   // Generate the images amd get the max width and height
   for (let i = 0; i < numberOfFrames; i++) {
-    const imageObj = await ransomNote.generateBuffer(text);
+    const imageObj = await ransomNote.generateBuffer(text, {backgroundColor: backgroundColor});
 
     let imageWidth: number = 0;
     let imageHeight: number = 0;
@@ -40,7 +40,7 @@ export async function generateGIf(
       });
 
     const resizedImage = await sharp(imageObj.imageBuffer)
-      .resize(Math.floor(imageWidth * 0.1), Math.floor(imageHeight * 0.1))
+      .resize(Math.floor(imageWidth * 0.5), Math.floor(imageHeight * 0.5))
       .toBuffer();
 
     await sharp(resizedImage)
@@ -83,6 +83,7 @@ export async function generateGIf(
   encoder.setRepeat(0); // 0 for repeat, -1 for no-repeat
   encoder.setDelay(frameDelay); // frame delay in ms
   encoder.setQuality(10); // image quality. 10 is default.
+  encoder.setTransparent(0x000000)
 
   // use node-canvas
   const canvas = createCanvas(maxImageWidth, maxImageHeight);
@@ -93,6 +94,7 @@ export async function generateGIf(
     image.src = resizedImages[i];
     ctx.drawImage(image, 0, 0);
     encoder.addFrame(ctx);
+    ctx.clearRect(0, 0, maxImageWidth, maxImageHeight);
   }
 
   encoder.finish();
