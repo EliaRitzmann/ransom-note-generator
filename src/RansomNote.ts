@@ -2,7 +2,7 @@ import { BackgroundColor, RansomNoteOptions } from "../types";
 import fs from "fs";
 import { generateImage } from "./util/generateImage";
 import { BACK_GROUND_COLOR } from "./util/BackgroundColor";
-import { generateGIF } from "./util/generateGIF";
+import { generateGIF } from "./util/generateGIf";
 
 export class RansomNote {
   private seed: number;

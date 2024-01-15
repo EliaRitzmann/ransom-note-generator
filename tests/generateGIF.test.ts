@@ -1,5 +1,5 @@
 import { BACK_GROUND_COLOR } from "../src";
-import { generateGIF } from "../src/util/generateGIF";
+import { generateGIF } from "../src/util/generateGIf";
 import fs from "fs";
 
 test("generateGIFTest", async () => {
@@ -18,14 +18,14 @@ test("generateGIFTest", async () => {
 });
 
 test("generateGIFWithInvalidTextTest", async () => {
-    await expect(async () => {
-        await generateGIF(
-            "Hello World!",
-            123,
-            BACK_GROUND_COLOR.TRANSPARENT,
-            10,
-            4,
-            300
-        );
-    }).rejects.toThrow(new Error("No files found for character: !"));
+  await expect(async () => {
+    await generateGIF(
+      "Hello World!",
+      123,
+      BACK_GROUND_COLOR.TRANSPARENT,
+      10,
+      4,
+      300
+    );
+  }).rejects.toThrow(new Error("No files found for character: !"));
 });
