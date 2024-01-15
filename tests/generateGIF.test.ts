@@ -4,7 +4,7 @@ import fs from "fs";
 
 test("generateGIFTest", async () => {
   const result = await generateGIF(
-    "Hello World",
+    "Ransom Note",
     123,
     BACK_GROUND_COLOR.TRANSPARENT,
     10,
@@ -12,7 +12,7 @@ test("generateGIFTest", async () => {
     300
   );
 
-  fs.writeFileSync("test.gif", result);
+  fs.writeFileSync("output/test.gif", result);
 
   expect(result).toBeInstanceOf(Buffer);
 });
