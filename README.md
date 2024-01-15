@@ -4,7 +4,9 @@ Ransom-Note is an npm package that provides a simple and easy-to-use interface f
 
 ## Installation
 
-`npm install ransom-note`
+```sh
+npm install ransom-note
+```
 
 ## Usage
 
@@ -17,7 +19,7 @@ The **RansomNote** npm package offers two ways to use it:
 **Object**
 
 With the RansomNote object, you have the flexibility to set your own default values for the entire instance. This feature allows you to define default settings once during instantiation, eliminating the need to pass them individually with every function call.
-```
+```javascript
 const { RansomNote } = require('ransom-note');
 
 // Set custom default values when instantiating the object
@@ -37,7 +39,7 @@ const { imageBuffer, text, options } = await ransomNote.generateImageBuffer('You
 
 The RansomNote class provides static methods that can be used directly without creating an instance. These methods offer a convenient way to utilize the functionality without the need for instantiation.
 
-```
+```javascript
 const { RansomNote } = require('ransom-note');
 
 // Use static method to generate an image buffer
@@ -51,7 +53,9 @@ const { text, filePath, options } = await RansomNote.generateAndSaveRansomNoteIm
 ##Class: RansomNote
 **Constructor**
 
-`const ransomNote = new RansomNote(options);`
+```javascript
+const ransomNote = new RansomNote(options);
+```
 
 options (optional): An object with the following properties:
 -seed (number): Seed for randomization (default: random number).
@@ -60,7 +64,9 @@ options (optional): An object with the following properties:
 
 **Methods**
 
-`generateImageBuffer(text, options)`
+```javascript
+generateImageBuffer(text, options)
+```
 
 Generate an image buffer.
 
@@ -68,7 +74,9 @@ Generate an image buffer.
 -options (optional): Options object with properties seed, backgroundColor, and spacing.
 -Returns a Promise resolving to an object with properties imageBuffer, text, and options.
 
-`generateAndSaveRansomNoteImage(text, outputFolder, options)`
+```javascript
+generateAndSaveRansomNoteImage(text, outputFolder, options)
+```
 
 Generate and save a ransom note image.
 
@@ -77,7 +85,9 @@ Generate and save a ransom note image.
 -options (optional): Options object with properties seed, backgroundColor, and spacing.
 Returns a Promise resolving to an object with properties text, filePath, and options.
 
-`generateGIFBuffer(text, numberOfFrames, frameDelay, options)`
+```javascript
+generateGIFBuffer(text, numberOfFrames, frameDelay, options)
+```
 
 Generate a GIF buffer.
 
@@ -87,7 +97,9 @@ Generate a GIF buffer.
 -options (optional): Options object with properties seed, backgroundColor, and spacing.
 Returns a Promise resolving to an object with properties gifBuffer, text, and options.
 
-`generateAndSaveRansomNoteGif(text, outputFolder, numberOfFrames, frameDelay, options)`
+```javascript
+generateAndSaveRansomNoteGif(text, outputFolder, numberOfFrames, frameDelay, options)
+```
 Generate and save a ransom note GIF.
 
 -text (string): The text to be used in the ransom note.
