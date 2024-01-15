@@ -5,6 +5,7 @@ import { BackgroundColor } from "../../types";
 import { RansomNote } from "../RansomNote";
 import { Image } from "canvas";
 
+
 export async function generateGIF(
   text: string,
   seed: number,
@@ -45,8 +46,11 @@ export async function generateGIF(
     const targetHeight = Math.floor(targetWidth / aspectRatio);
 
     const resizedImage = await sharp(imageObj.imageBuffer)
-      .resize(targetWidth, targetHeight, {fit: 'contain', // Use 'contain' to ensure the entire image fits within the dimensions
-      position: 'right'})
+      .resize(targetWidth, targetHeight, {
+        fit: "contain", // Use 'contain' to ensure the entire image fits within the dimensions
+        position: "right",
+        background: { r: 0, g: 0, b: 0, alpha: 0 }
+      })
       .toBuffer();
 
     await sharp(resizedImage)
@@ -61,11 +65,20 @@ export async function generateGIF(
     images.push(resizedImage);
   }
 
+  //output the images
+  for (let i = 0; i < numberOfFrames; i++) {
+    sharp(images[i]).toFile("./output/" + i + ".png");
+  }
+
   // Resize the images to the max width and height
   const resizedImages: Buffer[] = [];
   for (let i = 0; i < numberOfFrames; i++) {
     const resizedImage = await sharp(images[i])
-      .resize(maxImageWidth, maxImageHeight)
+      .resize(maxImageWidth, maxImageHeight, {
+        fit: "contain", // Use 'contain' to ensure the entire image fits within the dimensions
+        position: "right",
+        background: { r: 0, g: 0, b: 0, alpha: 0 }
+      })
       .toBuffer();
     resizedImages.push(resizedImage);
   }
