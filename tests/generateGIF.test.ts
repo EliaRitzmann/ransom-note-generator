@@ -1,5 +1,5 @@
 import { BACK_GROUND_COLOR } from "../src";
-import { generateGIF } from "../src/util/generateGIf";
+import { generateGIF } from "../src/util/generateGIF";
 import fs from "fs";
 
 test("generateGIFTest", async () => {
