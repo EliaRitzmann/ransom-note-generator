@@ -8,7 +8,7 @@ beforeEach(() => {
 });
 
 test("generateRansomNoteBufferObjectTest", async () => {
-  const result = await ransomNote.generateBuffer("Hello World");
+  const result = await ransomNote.generateImageBuffer("Hello World");
 
   expect(result).toBeInstanceOf(Object);
   expect(result.text).toBe("Hello World");
@@ -24,7 +24,7 @@ test("generateRansomNoteBufferWithCustomOptionsObjectTest", async () => {
     backgroundColor: BACK_GROUND_COLOR.RED,
     spacing: 50,
   });
-  const result = await ransomNote.generateBuffer("Hello World");
+  const result = await ransomNote.generateImageBuffer("Hello World");
 
   expect(result).toBeInstanceOf(Object);
   expect(result.text).toBe("Hello World");

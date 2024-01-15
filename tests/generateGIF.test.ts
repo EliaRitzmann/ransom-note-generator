@@ -1,8 +1,31 @@
 import { BACK_GROUND_COLOR } from "../src";
-import { generateGIf } from "../src/util/generateGIf";
+import { generateGIF } from "../src/util/generateGIF";
+import fs from "fs";
 
-test("test", async () => {
-    const res = await generateGIf("Elia", 123, BACK_GROUND_COLOR.TRANSPARENT, 10, 5, 100);
-    expect(res).not.toBe(123);
+test("generateGIFTest", async () => {
+  const result = await generateGIF(
+    "Hello World",
+    123,
+    BACK_GROUND_COLOR.TRANSPARENT,
+    10,
+    4,
+    300
+  );
 
+  fs.writeFileSync("test.gif", result);
+
+  expect(result).toBeInstanceOf(Buffer);
+});
+
+test("generateGIFWithInvalidTextTest", async () => {
+    await expect(async () => {
+        await generateGIF(
+            "Hello World!",
+            123,
+            BACK_GROUND_COLOR.TRANSPARENT,
+            10,
+            4,
+            300
+        );
+    }).rejects.toThrow(new Error("No files found for character: !"));
 });

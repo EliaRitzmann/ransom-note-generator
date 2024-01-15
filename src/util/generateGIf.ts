@@ -4,16 +4,16 @@ const { createCanvas } = require("canvas");
 import fs from "fs";
 import { BackgroundColor } from "../../types";
 import { RansomNote } from "../RansomNote";
-import { Image, ImageData } from "canvas";
+import { Image } from "canvas";
 
-export async function generateGIf(
+export async function generateGIF(
   text: string,
   seed: number,
   backgroundColor: BackgroundColor,
   spacing: number,
   numberOfFrames: number,
   frameDelay: number
-): Promise<string> {
+): Promise<Buffer> {
   const ransomNote = new RansomNote({
     seed: seed,
     backgroundColor: backgroundColor,
@@ -27,7 +27,9 @@ export async function generateGIf(
 
   // Generate the images amd get the max width and height
   for (let i = 0; i < numberOfFrames; i++) {
-    const imageObj = await ransomNote.generateBuffer(text, {backgroundColor: backgroundColor});
+    const imageObj = await ransomNote.generateImageBuffer(text, {
+      backgroundColor: backgroundColor,
+    });
 
     let imageWidth: number = 0;
     let imageHeight: number = 0;
@@ -39,8 +41,13 @@ export async function generateGIf(
         imageHeight = metadata.height as number;
       });
 
+    const targetWidth = 1000;
+    const aspectRatio = imageWidth / imageHeight;
+    const targetHeight = Math.floor(targetWidth / aspectRatio);
+
     const resizedImage = await sharp(imageObj.imageBuffer)
-      .resize(Math.floor(imageWidth * 0.5), Math.floor(imageHeight * 0.5))
+      .resize(targetWidth, targetHeight, {fit: 'contain', // Use 'contain' to ensure the entire image fits within the dimensions
+      position: 'right'})
       .toBuffer();
 
     await sharp(resizedImage)
@@ -64,28 +71,14 @@ export async function generateGIf(
     resizedImages.push(resizedImage);
   }
 
-  const inputFiles = [];
-
-  /*
-  //output the resized images
-  for (let i = 0; i < numberOfFrames; i++) {
-    const outputPath = `test${i}.png`;
-    fs.writeFileSync(outputPath, resizedImages[i]);
-    inputFiles.push(outputPath);
-  }
-  */
-
   const encoder = new GIFEncoder(maxImageWidth, maxImageHeight);
-  // stream the results as they are available into myanimated.gif
-  encoder.createReadStream().pipe(fs.createWriteStream("myanimated.gif"));
 
   encoder.start();
   encoder.setRepeat(0); // 0 for repeat, -1 for no-repeat
   encoder.setDelay(frameDelay); // frame delay in ms
   encoder.setQuality(10); // image quality. 10 is default.
-  encoder.setTransparent(0x000000)
+  encoder.setTransparent(0x000000);
 
-  // use node-canvas
   const canvas = createCanvas(maxImageWidth, maxImageHeight);
   const ctx = canvas.getContext("2d");
 
@@ -99,5 +92,5 @@ export async function generateGIf(
 
   encoder.finish();
 
-  return "test";
+  return encoder.out.getData();
 }

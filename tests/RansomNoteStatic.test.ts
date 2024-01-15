@@ -2,7 +2,7 @@ import { BACK_GROUND_COLOR, RansomNote } from "../src";
 import fs from "fs";
 
 test("generateBufferStaticTest", async () => {
-  const result = await RansomNote.generateBuffer("Hello World");
+  const result = await RansomNote.generateImageBuffer("Hello World");
   expect(result).toBeInstanceOf(Object);
   expect(result.text).toBe("Hello World");
   expect(result.options).toBeInstanceOf(Object);
@@ -13,7 +13,7 @@ test("generateBufferStaticTest", async () => {
 });
 
 test("generateRansomNoteBufferWithCustomOptionsStaticTest", async () => {
-  const result = await RansomNote.generateBuffer("Hello World", {
+  const result = await RansomNote.generateImageBuffer("Hello World", {
     backgroundColor: BACK_GROUND_COLOR.RED,
     spacing: 50,
   });
