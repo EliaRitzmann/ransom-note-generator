@@ -33,6 +33,9 @@ const ransomNote = new RansomNote(defaultOptions);
 
 // Now, when using instance methods, the default values will be applied
 const { imageBuffer, text, options } = await ransomNote.generateImageBuffer('Your text here');
+
+//Overwrite one (or more) default Options
+const { imageBuffer, text, options } = await ransomNote.generateImageBuffer('Your text here', {seed: 123});
 ```
 
 **Static Methods**
@@ -47,6 +50,9 @@ const { imageBuffer, text, options } = await RansomNote.generateImageBuffer('You
 
 // Use static method to generate and save an image
 const { text, filePath, options } = await RansomNote.generateAndSaveRansomNoteImage('Your text here', '/path/to/output/folder');
+
+// Use static method with one (or more) additional options
+const { imageBuffer, text, options } = await RansomNote.generateImageBuffer('Your text here', {seed: 123, spacing: 2});
 ```
 
 
@@ -58,10 +64,8 @@ const { text, filePath, options } = await RansomNote.generateAndSaveRansomNoteIm
 const ransomNote = new RansomNote(options);
 ```
 
-options (optional): An object with the following properties:
--seed (number): Seed for randomization (default: random number).
--backgroundColor (string): Background color (default: 'TRANSPARENT').
--spacing (number): Spacing between characters (default: 0).
+-options (optional): RansomNoteOptions object with properties seed, backgroundColor, and spacing.
+
 
 **Methods**
 
@@ -72,7 +76,7 @@ generateImageBuffer(text, options)
 Generate an image buffer.
 
 -text (string): The text to be used in the ransom note.
--options (optional): Options object with properties seed, backgroundColor, and spacing.
+-options (optional): RansomNoteOptions object with properties seed, backgroundColor, and spacing.
 -Returns a Promise resolving to an object with properties imageBuffer, text, and options.
 
 ```javascript
@@ -83,7 +87,7 @@ Generate and save a ransom note image.
 
 -text (string): The text to be used in the ransom note.
 -outputFolder (string): The path to the output folder where the image will be saved.
--options (optional): Options object with properties seed, backgroundColor, and spacing.
+-options (optional): RansomNoteOptions object with properties seed, backgroundColor, and spacing.
 Returns a Promise resolving to an object with properties text, filePath, and options.
 
 ```javascript
@@ -95,7 +99,7 @@ Generate a GIF buffer.
 -text (string): The text to be used in the ransom note.
 -numberOfFrames (number): The number of frames in the GIF.
 -frameDelay (number): The delay between frames in milliseconds.
--options (optional): Options object with properties seed, backgroundColor, and spacing.
+-options (optional): RansomNoteOptions object with properties seed, backgroundColor, and spacing.
 Returns a Promise resolving to an object with properties gifBuffer, text, and options.
 
 ```javascript
@@ -112,6 +116,23 @@ Returns a Promise resolving to an object with properties text, filePath, and opt
 
 **Static Methods**
 All the methods mentioned above are available as static methods for direct usage without creating an instance of RansomNote.
+
+##Interface RansomNoteOptions
+
+The RansomNoteOptions interface defines the customizable properties that can be used when interacting with the RansomNote class. These properties include:
+
+-seed (optional): A numerical seed for randomization.
+-backgroundColor (optional): The background color, utilizing the BackgroundColor type.
+-spacing (optional): The spacing between characters in the ransom note.
+
+```javascript
+interface RansomNoteOptions {
+  seed?: number;
+  backgroundColor?: BackgroundColor;
+  spacing?: number;
+}
+```
+
 
 ## License
 
