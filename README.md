@@ -50,7 +50,8 @@ const { text, filePath, options } = await RansomNote.generateAndSaveRansomNoteIm
 ```
 
 
-##Class: RansomNote
+## Class: RansomNote
+
 **Constructor**
 
 ```javascript
@@ -112,5 +113,6 @@ Returns a Promise resolving to an object with properties text, filePath, and opt
 **Static Methods**
 All the methods mentioned above are available as static methods for direct usage without creating an instance of RansomNote.
 
-##License
+## License
+
 tbd
