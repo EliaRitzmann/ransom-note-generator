@@ -8,6 +8,16 @@ test("generateImageTest", async () => {
     BACK_GROUND_COLOR.TRANSPARENT,
     10
   );
-  expect(result).not.toBe(123);
   expect(result).toBeInstanceOf(Buffer);
+});
+
+test("generateImageWithInvalidTextTest", async () => {
+  await expect(async () => {
+      await generateImage(
+          "Hello World!",
+          123,
+          BACK_GROUND_COLOR.TRANSPARENT,
+          10,
+      );
+  }).rejects.toThrow(new Error("No files found for character: !"));
 });
