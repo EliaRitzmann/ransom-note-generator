@@ -1,7 +1,6 @@
 import sharp from "sharp";
 const GIFEncoder = require("gifencoder");
 const { createCanvas } = require("canvas");
-import fs from "fs";
 import { BackgroundColor } from "../../types";
 import { RansomNote } from "../RansomNote";
 import { Image } from "canvas";
