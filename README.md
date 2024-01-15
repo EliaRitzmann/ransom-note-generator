@@ -117,7 +117,7 @@ Returns a Promise resolving to an object with properties text, filePath, and opt
 **Static Methods**
 All the methods mentioned above are available as static methods for direct usage without creating an instance of RansomNote.
 
-## Interface RansomNoteOptions
+## InterfaceRansomNoteOptions
 
 The RansomNoteOptions interface defines the customizable properties that can be used when interacting with the RansomNote class. These properties include:
 
