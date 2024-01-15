@@ -18,7 +18,7 @@ The **RansomNote** npm package offers two ways to use it:
 
 **Object**
 
-With the RansomNote object, you have the flexibility to set your own default values for the entire instance. This feature allows you to define default settings once during instantiation, eliminating the need to pass them individually with every function call.
+With the RansomNote object, you have the flexibility to set your own [RansomNoteOptions](##InterfaceRansomNoteOptions) for the entire instance. This feature allows you to define default settings once during instantiation, eliminating the need to pass them individually with every function call. If you leave it empty the default values are applied.
 ```javascript
 const { RansomNote } = require('ransom-note');
 
@@ -64,7 +64,7 @@ const { imageBuffer, text, options } = await RansomNote.generateImageBuffer('You
 const ransomNote = new RansomNote(options);
 ```
 
--options (optional): RansomNoteOptions object with properties seed, backgroundColor, and spacing.
+-options (optional): [RansomNoteOptions](##InterfaceRansomNoteOptions) object with properties seed, backgroundColor, and spacing.
 
 
 **Methods**
@@ -76,7 +76,7 @@ generateImageBuffer(text, options)
 Generate an image buffer.
 
 -text (string): The text to be used in the ransom note.
--options (optional): RansomNoteOptions object with properties seed, backgroundColor, and spacing.
+-options (optional): [RansomNoteOptions](##InterfaceRansomNoteOptions) object with properties seed, backgroundColor, and spacing.
 -Returns a Promise resolving to an object with properties imageBuffer, text, and options.
 
 ```javascript
@@ -87,7 +87,7 @@ Generate and save a ransom note image.
 
 -text (string): The text to be used in the ransom note.
 -outputFolder (string): The path to the output folder where the image will be saved.
--options (optional): RansomNoteOptions object with properties seed, backgroundColor, and spacing.
+-options (optional): [RansomNoteOptions](##InterfaceRansomNoteOptions) object with properties seed, backgroundColor, and spacing.
 Returns a Promise resolving to an object with properties text, filePath, and options.
 
 ```javascript
@@ -99,7 +99,7 @@ Generate a GIF buffer.
 -text (string): The text to be used in the ransom note.
 -numberOfFrames (number): The number of frames in the GIF.
 -frameDelay (number): The delay between frames in milliseconds.
--options (optional): RansomNoteOptions object with properties seed, backgroundColor, and spacing.
+-options (optional): [RansomNoteOptions](##InterfaceRansomNoteOptions) object with properties seed, backgroundColor, and spacing.
 Returns a Promise resolving to an object with properties gifBuffer, text, and options.
 
 ```javascript
@@ -111,13 +111,13 @@ Generate and save a ransom note GIF.
 -outputFolder (string): The path to the output folder where the GIF will be saved.
 -numberOfFrames (number): The number of frames in the GIF.
 -frameDelay (number): The delay between frames in milliseconds.
--options (optional): Options object with properties seed, backgroundColor, and spacing.
+-options (optional): [RansomNoteOptions](##InterfaceRansomNoteOptions) object with properties seed, backgroundColor, and spacing.
 Returns a Promise resolving to an object with properties text, filePath, and options.
 
 **Static Methods**
 All the methods mentioned above are available as static methods for direct usage without creating an instance of RansomNote.
 
-##Interface RansomNoteOptions
+## Interface RansomNoteOptions
 
 The RansomNoteOptions interface defines the customizable properties that can be used when interacting with the RansomNote class. These properties include:
 
@@ -135,5 +135,6 @@ interface RansomNoteOptions {
 
 
 ## License
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
 
-tbd
+Images: [OnlyGFX.com](https://www.onlygfx.com/130-newspaper-and-magazine-cutout-letters-png-transparent/)
