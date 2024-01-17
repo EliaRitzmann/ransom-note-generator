@@ -73,7 +73,7 @@ export class RansomNote {
     };
   }
 
-  public async generateAndSaveRansomNoteImage(
+  public async generateAndSaveImage(
     text: string,
     outputFolder: string,
     { seed, backgroundColor, spacing }: RansomNoteOptions = {}
@@ -113,7 +113,7 @@ export class RansomNote {
     };
   }
 
-  public static async generateAndSaveRansomNoteImage(
+  public static async generateAndSaveImage(
     text: string,
     outputFolder: string,
     {
@@ -215,7 +215,7 @@ export class RansomNote {
     };
   }
 
-  public async generateAndSaveRansomNoteGIF(
+  public async generateAndSaveGIF(
     text: string,
     outputFolder: string,
     numberOfFrames: number,
@@ -264,7 +264,7 @@ export class RansomNote {
     };
   }
 
-  public static async generateAndSaveRansomNoteGIF(
+  public static async generateAndSaveGIF(
     text: string,
     outputFolder: string,
     numberOfFrames: number,

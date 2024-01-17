@@ -19,7 +19,7 @@ test("generateRansomNoteBufferObjectTest", async () => {
   expect(result.imageBuffer).toBeInstanceOf(Buffer);
 });
 
-test("generateRansomNoteBufferWithCustomOptionsObjectTest", async () => {
+test("generateImageBufferWithCustomOptionsObjectTest", async () => {
   ransomNote = new RansomNote({
     backgroundColor: BACKGROUND_COLOR.RED,
     spacing: 50,
@@ -35,8 +35,8 @@ test("generateRansomNoteBufferWithCustomOptionsObjectTest", async () => {
   expect(result.imageBuffer).toBeInstanceOf(Buffer);
 });
 
-test("generateAndSaveRansomNoteImageObjectTest", async () => {
-  const result = await ransomNote.generateAndSaveRansomNoteImage(
+test("generateAndSaveImageObjectTest", async () => {
+  const result = await ransomNote.generateAndSaveImage(
     "Hello World",
     "./output"
   );
@@ -53,14 +53,86 @@ test("generateAndSaveRansomNoteImageObjectTest", async () => {
   fs.unlinkSync(result.filePath);
 });
 
-test("generateAndSaveRansomNoteImageWithCustomOptionsObjectTest", async () => {
+test("generateAndSaveImageWithCustomOptionsObjectTest", async () => {
   ransomNote = new RansomNote({
     backgroundColor: BACKGROUND_COLOR.BLACK,
     spacing: 40,
   });
-  const result = await ransomNote.generateAndSaveRansomNoteImage(
+  const result = await ransomNote.generateAndSaveImage(
     "Hello World",
     "./output"
+  );
+
+  expect(result).toBeInstanceOf(Object);
+  expect(result.text).toBe("Hello World");
+  expect(result.options).toBeInstanceOf(Object);
+  expect(typeof result.options.seed).toBe("number");
+  expect(result.options.backgroundColor).toBe(BACKGROUND_COLOR.BLACK);
+  expect(result.options.spacing).toBe(40);
+  expect(fs.existsSync(result.filePath)).toBe(true);
+
+  //clean up
+  fs.unlinkSync(result.filePath);
+});
+
+test("generateGIFBufferObjectTest", async () => {
+  const result = await ransomNote.generateGIFBuffer("Hello World", 4, 300);
+
+  expect(result).toBeInstanceOf(Object);
+  expect(result.text).toBe("Hello World");
+  expect(result.options).toBeInstanceOf(Object);
+  expect(typeof result.options.seed).toBe("number");
+  expect(result.options.backgroundColor).toBe(BACKGROUND_COLOR.TRANSPARENT);
+  expect(result.options.spacing).toBe(0);
+  expect(result.gifBuffer).toBeInstanceOf(Buffer);
+});
+
+test("generateGIFBufferWithCustomOptionsObjectTest", async () => {
+  ransomNote = new RansomNote({
+    backgroundColor: BACKGROUND_COLOR.RED,
+    spacing: 50,
+  });
+  const result = await ransomNote.generateGIFBuffer("Hello World", 4, 300);
+
+  expect(result).toBeInstanceOf(Object);
+  expect(result.text).toBe("Hello World");
+  expect(result.options).toBeInstanceOf(Object);
+  expect(typeof result.options.seed).toBe("number");
+  expect(result.options.backgroundColor).toBe(BACKGROUND_COLOR.RED);
+  expect(result.options.spacing).toBe(50);
+  expect(result.gifBuffer).toBeInstanceOf(Buffer);
+});
+
+test("generateAndSaveGIFObjectTest", async () => {
+  const result = await ransomNote.generateAndSaveGIF(
+    "Hello World",
+    "./output",
+    4,
+    300
+  );
+
+  expect(result).toBeInstanceOf(Object);
+  expect(result.text).toBe("Hello World");
+  expect(result.options).toBeInstanceOf(Object);
+  expect(typeof result.options.seed).toBe("number");
+  expect(result.options.backgroundColor).toBe(BACKGROUND_COLOR.TRANSPARENT);
+  expect(result.options.spacing).toBe(0);
+  expect(fs.existsSync(result.filePath)).toBe(true);
+
+  //clean up
+  fs.unlinkSync(result.filePath);
+});
+
+test("generateAndSaveGIFWithCustomOptionsObjectTest", async () => {
+  ransomNote = new RansomNote({
+    backgroundColor: BACKGROUND_COLOR.BLACK,
+    spacing: 40,
+  });
+  const result = await ransomNote.generateAndSaveGIF(
+    "Hello World",
+    "./output",
+    4,
+    300
   );
 
   expect(result).toBeInstanceOf(Object);
