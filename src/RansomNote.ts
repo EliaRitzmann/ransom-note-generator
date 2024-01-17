@@ -1,7 +1,7 @@
 import { BackgroundColor, RansomNoteOptions } from "../types";
 import fs from "fs";
 import { generateImage } from "./util/generateImage";
-import { BACK_GROUND_COLOR } from "./util/BackgroundColor";
+import { BACKGROUND_COLOR } from "./util/BackgroundColor";
 import { generateGIF } from "./util/generateGIF";
 
 export class RansomNote {
@@ -15,7 +15,7 @@ export class RansomNote {
     spacing,
   }: RansomNoteOptions = {}) {
     this.seed = seed || Math.floor(Math.random() * 1000000);
-    this.backgroundColor = backgroundColor || BACK_GROUND_COLOR.TRANSPARENT;
+    this.backgroundColor = backgroundColor || BACKGROUND_COLOR.TRANSPARENT;
     this.spacing = spacing || 0;
   }
 
@@ -53,7 +53,7 @@ export class RansomNote {
     text: string,
     {
       seed = Math.floor(Math.random() * 1000000),
-      backgroundColor = BACK_GROUND_COLOR.TRANSPARENT,
+      backgroundColor = BACKGROUND_COLOR.TRANSPARENT,
       spacing = 0,
     }: RansomNoteOptions = {}
   ): Promise<{
@@ -118,7 +118,7 @@ export class RansomNote {
     outputFolder: string,
     {
       seed = Math.floor(Math.random() * 1000000),
-      backgroundColor = BACK_GROUND_COLOR.TRANSPARENT,
+      backgroundColor = BACKGROUND_COLOR.TRANSPARENT,
       spacing = 0,
     }: RansomNoteOptions = {}
   ): Promise<{
@@ -188,7 +188,7 @@ export class RansomNote {
     frameDelay: number,
     {
       seed = Math.floor(Math.random() * 1000000),
-      backgroundColor = BACK_GROUND_COLOR.TRANSPARENT,
+      backgroundColor = BACKGROUND_COLOR.TRANSPARENT,
       spacing = 0,
     }: RansomNoteOptions = {}
   ): Promise<{
@@ -222,7 +222,7 @@ export class RansomNote {
     frameDelay: number,
     {
       seed = Math.floor(Math.random() * 1000000),
-      backgroundColor = BACK_GROUND_COLOR.TRANSPARENT,
+      backgroundColor = BACKGROUND_COLOR.TRANSPARENT,
       spacing = 0,
     }: RansomNoteOptions = {}
   ): Promise<{
@@ -271,7 +271,7 @@ export class RansomNote {
     frameDelay: number,
     {
       seed = Math.floor(Math.random() * 1000000),
-      backgroundColor = BACK_GROUND_COLOR.TRANSPARENT,
+      backgroundColor = BACKGROUND_COLOR.TRANSPARENT,
       spacing = 0,
     }: RansomNoteOptions = {}
   ): Promise<{

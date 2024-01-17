@@ -1,4 +1,4 @@
-import { BACK_GROUND_COLOR, RansomNote } from "../src";
+import { BACKGROUND_COLOR, RansomNote } from "../src";
 import fs from "fs";
 
 let ransomNote: RansomNote;
@@ -14,14 +14,14 @@ test("generateRansomNoteBufferObjectTest", async () => {
   expect(result.text).toBe("Hello World");
   expect(result.options).toBeInstanceOf(Object);
   expect(typeof result.options.seed).toBe("number");
-  expect(result.options.backgroundColor).toBe(BACK_GROUND_COLOR.TRANSPARENT);
+  expect(result.options.backgroundColor).toBe(BACKGROUND_COLOR.TRANSPARENT);
   expect(result.options.spacing).toBe(0);
   expect(result.imageBuffer).toBeInstanceOf(Buffer);
 });
 
 test("generateRansomNoteBufferWithCustomOptionsObjectTest", async () => {
   ransomNote = new RansomNote({
-    backgroundColor: BACK_GROUND_COLOR.RED,
+    backgroundColor: BACKGROUND_COLOR.RED,
     spacing: 50,
   });
   const result = await ransomNote.generateImageBuffer("Hello World");
@@ -30,7 +30,7 @@ test("generateRansomNoteBufferWithCustomOptionsObjectTest", async () => {
   expect(result.text).toBe("Hello World");
   expect(result.options).toBeInstanceOf(Object);
   expect(typeof result.options.seed).toBe("number");
-  expect(result.options.backgroundColor).toBe(BACK_GROUND_COLOR.RED);
+  expect(result.options.backgroundColor).toBe(BACKGROUND_COLOR.RED);
   expect(result.options.spacing).toBe(50);
   expect(result.imageBuffer).toBeInstanceOf(Buffer);
 });
@@ -45,7 +45,7 @@ test("generateAndSaveRansomNoteImageObjectTest", async () => {
   expect(result.text).toBe("Hello World");
   expect(result.options).toBeInstanceOf(Object);
   expect(typeof result.options.seed).toBe("number");
-  expect(result.options.backgroundColor).toBe(BACK_GROUND_COLOR.TRANSPARENT);
+  expect(result.options.backgroundColor).toBe(BACKGROUND_COLOR.TRANSPARENT);
   expect(result.options.spacing).toBe(0);
   expect(fs.existsSync(result.filePath)).toBe(true);
 
@@ -55,7 +55,7 @@ test("generateAndSaveRansomNoteImageObjectTest", async () => {
 
 test("generateAndSaveRansomNoteImageWithCustomOptionsObjectTest", async () => {
   ransomNote = new RansomNote({
-    backgroundColor: BACK_GROUND_COLOR.BLACK,
+    backgroundColor: BACKGROUND_COLOR.BLACK,
     spacing: 40,
   });
   const result = await ransomNote.generateAndSaveRansomNoteImage(
@@ -67,7 +67,7 @@ test("generateAndSaveRansomNoteImageWithCustomOptionsObjectTest", async () => {
   expect(result.text).toBe("Hello World");
   expect(result.options).toBeInstanceOf(Object);
   expect(typeof result.options.seed).toBe("number");
-  expect(result.options.backgroundColor).toBe(BACK_GROUND_COLOR.BLACK);
+  expect(result.options.backgroundColor).toBe(BACKGROUND_COLOR.BLACK);
   expect(result.options.spacing).toBe(40);
   expect(fs.existsSync(result.filePath)).toBe(true);
 

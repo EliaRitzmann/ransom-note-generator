@@ -1,6 +1,6 @@
 import { BackgroundColor } from "../../types";
 
-export const BACK_GROUND_COLOR = {
+export const BACKGROUND_COLOR = {
   BLACK: { r: 0, g: 0, b: 0, alpha: 1 } as BackgroundColor,
   WHITE: { r: 255, g: 255, b: 255, alpha: 1 } as BackgroundColor,
   TRANSPARENT: { r: 0, g: 0, b: 0, alpha: 0 } as BackgroundColor,

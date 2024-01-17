@@ -35,7 +35,7 @@ const ransomNote = new RansomNote(defaultOptions);
 const { imageBuffer, text, options } = await ransomNote.generateImageBuffer('Your text here');
 
 //Overwrite one (or more) default Options
-const { imageBuffer, text, options } = await ransomNote.generateImageBuffer('Your text here', {seed: 123});
+const { imageBuffer, text, options } = await ransomNote.generateImageBuffer('Your text here', {seed: 123, backgroundColor: BACKGROUNDCOLOR.RED, spacing: 30});
 ```
 
 **Static Methods**
@@ -52,7 +52,7 @@ const { imageBuffer, text, options } = await RansomNote.generateImageBuffer('You
 const { text, filePath, options } = await RansomNote.generateAndSaveRansomNoteImage('Your text here', '/path/to/output/folder');
 
 // Use static method with one (or more) additional options
-const { imageBuffer, text, options } = await RansomNote.generateImageBuffer('Your text here', {seed: 123, spacing: 2});
+const { imageBuffer, text, options } = await RansomNote.generateImageBuffer('Your text here', {spacing: 2});
 ```
 
 
@@ -133,6 +133,39 @@ interface RansomNoteOptions {
 }
 ```
 
+## Type: BackgroundColor
+
+The BackgroundColor type defines the structure of background colors used in the RansomNote class. It includes the red (r), green (g), and blue (b) components, along with an alpha value representing transparency.
+
+```javascript
+interface BackgroundColor {
+    r: number;
+    g: number;
+    b: number;
+    alpha: number;
+  }
+```
+
+You have the flexibility to specify your preferred background color by providing an object adhering to the BackgroundColor structure. A predefined set of colors is available in the BACKGROUND_COLOR constant, but you can also leverage external libraries like [Color](https://www.npmjs.com/package/color) for more extensive color manipulation if desired.
+
+Example with BACKGROUND_COLORS:
+
+```javascript
+import { BACKGROUND_COLOR, RansomNote } from "ransom-note";
+
+await RansomNote.generateGIF("Color", 123, BACKGROUND_COLOR.RED, 10, 4, 300);
+```
+
+
+Example with Color library:
+
+```javascript
+import Color from "colors"
+
+const color = new Color("red");
+
+await RansomNote.generateGIF("Color", 123, color.object(), 10, 4, 300);
+```
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
