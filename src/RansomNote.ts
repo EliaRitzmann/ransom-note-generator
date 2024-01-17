@@ -215,7 +215,7 @@ export class RansomNote {
     };
   }
 
-  public async generateAndSaveRansomNoteGif(
+  public async generateAndSaveRansomNoteGIF(
     text: string,
     outputFolder: string,
     numberOfFrames: number,
@@ -254,8 +254,8 @@ export class RansomNote {
     fs.writeFileSync(filePath, gifBuffer);
 
     return {
-      text: "",
-      filePath: "",
+      text: text,
+      filePath: filePath,
       options: {
         seed: providedSeed,
         backgroundColor: providedBackgroundColor,
@@ -264,7 +264,7 @@ export class RansomNote {
     };
   }
 
-  public static async generateAndSaveRansomNoteGif(
+  public static async generateAndSaveRansomNoteGIF(
     text: string,
     outputFolder: string,
     numberOfFrames: number,
