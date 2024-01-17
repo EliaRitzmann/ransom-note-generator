@@ -8,7 +8,9 @@ test("generateBufferStaticTest", async () => {
   expect(result.text).toBe("Hello World");
   expect(result.options).toBeInstanceOf(Object);
   expect(typeof result.options.seed).toBe("number");
-  expect(result.options.backgroundColor).toBe(Color({ r: 0, g: 0, b: 0 }).alpha(0));
+  expect(result.options.backgroundColor).toStrictEqual(
+    Color({ r: 0, g: 0, b: 0 }).alpha(0)
+  );
   expect(result.options.spacing).toBe(0);
   expect(result.imageBuffer).toBeInstanceOf(Buffer);
 });
@@ -22,7 +24,9 @@ test("generateRansomNoteBufferWithCustomOptionsStaticTest", async () => {
   expect(result.text).toBe("Hello World");
   expect(result.options).toBeInstanceOf(Object);
   expect(typeof result.options.seed).toBe("number");
-  expect(result.options.backgroundColor).toBe(Color({ r: 255, g: 0, b: 0 }).alpha(1));
+  expect(result.options.backgroundColor).toStrictEqual(
+    Color({ r: 255, g: 0, b: 0 }).alpha(1)
+  );
   expect(result.options.spacing).toBe(50);
   expect(result.imageBuffer).toBeInstanceOf(Buffer);
 });
@@ -36,7 +40,9 @@ test("generateAndSaveRansomNoteImageStaticTest", async () => {
   expect(result.text).toBe("Hello World");
   expect(result.options).toBeInstanceOf(Object);
   expect(typeof result.options.seed).toBe("number");
-  expect(result.options.backgroundColor).toBe(Color({ r: 0, g: 0, b: 0 }).alpha(0));
+  expect(result.options.backgroundColor).toStrictEqual(
+    Color({ r: 0, g: 0, b: 0 }).alpha(0)
+  );
   expect(result.options.spacing).toBe(0);
   expect(fs.existsSync(result.filePath)).toBe(true);
 
@@ -57,7 +63,9 @@ test("generateAndSaveRansomNoteImageWithCustomOptionsStaticTest", async () => {
   expect(result.text).toBe("Hello World");
   expect(result.options).toBeInstanceOf(Object);
   expect(typeof result.options.seed).toBe("number");
-  expect(result.options.backgroundColor).toBe(Color({ r: 255, g: 0, b: 0 }).alpha(1));
+  expect(result.options.backgroundColor).toStrictEqual(
+    Color({ r: 255, g: 0, b: 0 }).alpha(1)
+  );
   expect(result.options.spacing).toBe(40);
   expect(fs.existsSync(result.filePath)).toBe(true);
 

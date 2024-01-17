@@ -13,11 +13,11 @@ test("generateImageTest", async () => {
 
 test("generateImageWithInvalidTextTest", async () => {
   await expect(async () => {
-      await generateImage(
-          "Hello World!",
-          123,
-          new Color({ r: 0, g: 0, b: 0 }).alpha(0),
-          10,
-      );
+    await generateImage(
+      "Hello World!",
+      123,
+      new Color({ r: 0, g: 0, b: 0 }).alpha(0),
+      10
+    );
   }).rejects.toThrow(new Error("No files found for character: !"));
 });
