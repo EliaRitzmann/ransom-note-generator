@@ -1,5 +1,8 @@
 # ransom-note
 
+![RansomNote](https://github.com/EliaRitzmann/ransom-note/assets/69593308/a9e73129-2c2b-4e49-8765-7a15f882c859)
+
+
 Ransom-Note is an npm package that provides a simple and easy-to-use interface for generating ransom note-style images and GIFs. It exports a class, `RansomNote`, with various methods to generate and save images and GIFs with customizable options.
 
 ## Installation
