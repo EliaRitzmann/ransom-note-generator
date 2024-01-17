@@ -65,11 +65,6 @@ export async function generateGIF(
     images.push(resizedImage);
   }
 
-  //output the images
-  for (let i = 0; i < numberOfFrames; i++) {
-    sharp(images[i]).toFile("./output/" + i + ".png");
-  }
-
   // Resize the images to the max width and height
   const resizedImages: Buffer[] = [];
   for (let i = 0; i < numberOfFrames; i++) {
