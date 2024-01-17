@@ -1,11 +1,11 @@
-import { BACK_GROUND_COLOR } from "../src/util/BackgroundColor";
+import Color from "color";
 import { generateImage } from "../src/util/generateImage";
 
 test("generateImageTest", async () => {
   const result = await generateImage(
-    "Hello World",
+    "Transparent",
     123,
-    BACK_GROUND_COLOR.TRANSPARENT,
+    new Color({ r: 0, g: 0, b: 0 }).alpha(0),
     10
   );
   expect(result).toBeInstanceOf(Buffer);
@@ -16,7 +16,7 @@ test("generateImageWithInvalidTextTest", async () => {
       await generateImage(
           "Hello World!",
           123,
-          BACK_GROUND_COLOR.TRANSPARENT,
+          new Color({ r: 0, g: 0, b: 0 }).alpha(0),
           10,
       );
   }).rejects.toThrow(new Error("No files found for character: !"));

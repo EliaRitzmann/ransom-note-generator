@@ -1,15 +1,15 @@
 import sharp from "sharp";
 const GIFEncoder = require("gifencoder");
 const { createCanvas } = require("canvas");
-import { BackgroundColor } from "../../types";
 import { RansomNote } from "../RansomNote";
 import { Image } from "canvas";
+import Color from "color";
 
 
 export async function generateGIF(
   text: string,
   seed: number,
-  backgroundColor: BackgroundColor,
+  backgroundColor: Color,
   spacing: number,
   numberOfFrames: number,
   frameDelay: number

@@ -1,14 +1,9 @@
+import Color from "color";
+
 interface RansomNoteOptions {
   seed?: number;
-  backgroundColor?: BackgroundColor;
+  backgroundColor?: Color;
   spacing?: number;
 }
 
-interface BackgroundColor {
-    r: number;
-    g: number;
-    b: number;
-    alpha: number;
-  }
-
-export { RansomNoteOptions, BackgroundColor };
+export { RansomNoteOptions };

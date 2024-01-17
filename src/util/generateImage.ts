@@ -1,12 +1,12 @@
 import fs from "fs";
 import path from "path";
 import sharp from "sharp";
-import { BackgroundColor } from "../../types";
+import Color from "color";
 
 export async function generateImage(
   value: string,
   seed: number,
-  backgroundColor: BackgroundColor,
+  backgroundColor: Color,
   spaceing: number
 ): Promise<Buffer> {
   if (!value) {
@@ -39,14 +39,14 @@ export async function generateImage(
               width: 81 + spaceing,
               height: 100,
               channels: 4,
-              background: backgroundColor,
+              background: backgroundColor.object(),
             },
           })
             .png()
             .toBuffer()
         : await sharp(filePath)
             .rotate(getRandomRotationAngle(), {
-              background: backgroundColor,
+              background: backgroundColor.object(),
             })
             .toBuffer()
     )
@@ -70,7 +70,7 @@ export async function generateImage(
       width: combinedWidth,
       height: maxHeight,
       channels: 4,
-      background: backgroundColor,
+      background: backgroundColor.rgb().object(),
     },
   });
 

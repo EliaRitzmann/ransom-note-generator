@@ -1,12 +1,12 @@
-import { BACK_GROUND_COLOR } from "../src";
+import Color from "color";
 import { generateGIF } from "../src/util/generateGIF";
 import fs from "fs";
 
 test("generateGIFTest", async () => {
   const result = await generateGIF(
-    "Ransom Note",
+    "Hello World",
     123,
-    BACK_GROUND_COLOR.TRANSPARENT,
+    new Color({ r: 0, g: 0, b: 0 }).alpha(0),
     10,
     4,
     300
@@ -22,7 +22,7 @@ test("generateGIFWithInvalidTextTest", async () => {
     await generateGIF(
       "Hello World!",
       123,
-      BACK_GROUND_COLOR.TRANSPARENT,
+      new Color({ r: 0, g: 0, b: 0 }).alpha(0),
       10,
       4,
       300

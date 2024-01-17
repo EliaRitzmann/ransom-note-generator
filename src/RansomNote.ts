@@ -1,12 +1,13 @@
-import { BackgroundColor, RansomNoteOptions } from "../types";
+import { RansomNoteOptions } from "../types";
 import fs from "fs";
 import { generateImage } from "./util/generateImage";
-import { BACK_GROUND_COLOR } from "./util/BackgroundColor";
 import { generateGIF } from "./util/generateGIF";
+import Color from "color";
+
 
 export class RansomNote {
   private seed: number;
-  private backgroundColor: BackgroundColor;
+  private backgroundColor: Color;
   private spacing: number;
 
   public constructor({
@@ -15,7 +16,7 @@ export class RansomNote {
     spacing,
   }: RansomNoteOptions = {}) {
     this.seed = seed || Math.floor(Math.random() * 1000000);
-    this.backgroundColor = backgroundColor || BACK_GROUND_COLOR.TRANSPARENT;
+    this.backgroundColor = backgroundColor ||  new Color({r: 0, g: 0, b: 0}).alpha(0);
     this.spacing = spacing || 0;
   }
 
@@ -53,7 +54,7 @@ export class RansomNote {
     text: string,
     {
       seed = Math.floor(Math.random() * 1000000),
-      backgroundColor = BACK_GROUND_COLOR.TRANSPARENT,
+      backgroundColor = new Color({r: 0, g: 0, b: 0}).alpha(0),
       spacing = 0,
     }: RansomNoteOptions = {}
   ): Promise<{
@@ -118,7 +119,7 @@ export class RansomNote {
     outputFolder: string,
     {
       seed = Math.floor(Math.random() * 1000000),
-      backgroundColor = BACK_GROUND_COLOR.TRANSPARENT,
+      backgroundColor = new Color({r: 0, g: 0, b: 0}).alpha(0),
       spacing = 0,
     }: RansomNoteOptions = {}
   ): Promise<{
@@ -188,7 +189,7 @@ export class RansomNote {
     frameDelay: number,
     {
       seed = Math.floor(Math.random() * 1000000),
-      backgroundColor = BACK_GROUND_COLOR.TRANSPARENT,
+      backgroundColor = new Color({r: 0, g: 0, b: 0}).alpha(0),
       spacing = 0,
     }: RansomNoteOptions = {}
   ): Promise<{
@@ -222,7 +223,7 @@ export class RansomNote {
     frameDelay: number,
     {
       seed = Math.floor(Math.random() * 1000000),
-      backgroundColor = BACK_GROUND_COLOR.TRANSPARENT,
+      backgroundColor = new Color({r: 0, g: 0, b: 0}).alpha(0),
       spacing = 0,
     }: RansomNoteOptions = {}
   ): Promise<{
@@ -271,7 +272,7 @@ export class RansomNote {
     frameDelay: number,
     {
       seed = Math.floor(Math.random() * 1000000),
-      backgroundColor = BACK_GROUND_COLOR.TRANSPARENT,
+      backgroundColor = new Color({r: 0, g: 0, b: 0}).alpha(0),
       spacing = 0,
     }: RansomNoteOptions = {}
   ): Promise<{
