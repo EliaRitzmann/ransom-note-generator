@@ -299,8 +299,8 @@ export class RansomNote {
     fs.writeFileSync(filePath, gifBuffer);
 
     return {
-      text: "",
-      filePath: "",
+      text: text,
+      filePath: filePath,
       options: {
         seed,
         backgroundColor,
