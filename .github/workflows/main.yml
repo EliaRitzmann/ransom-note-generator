@@ -11,5 +11,5 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Install modules
-        run: npm install --frozen-lockfile
+        run: npm i
       - run: npm run lint && npm run test && npm run build
