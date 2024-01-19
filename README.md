@@ -190,6 +190,6 @@ await RansomNote.generateGIF("Color", 123, color.object(), 10, 4, 300);
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 Images: [OnlyGFX.com](https://www.onlygfx.com/130-newspaper-and-magazine-cutout-letters-png-transparent/)
