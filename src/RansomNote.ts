@@ -220,11 +220,7 @@ export class RansomNote {
     outputFolder: string,
     numberOfFrames: number,
     frameDelay: number,
-    {
-      seed = Math.floor(Math.random() * 1000000),
-      backgroundColor = BACKGROUND_COLOR.TRANSPARENT,
-      spacing = 0,
-    }: RansomNoteOptions = {}
+    { seed, backgroundColor, spacing }: RansomNoteOptions = {}
   ): Promise<{
     text: string;
     filePath: string;
