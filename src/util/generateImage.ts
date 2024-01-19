@@ -7,13 +7,13 @@ export async function generateImage(
   value: string,
   seed: number,
   backgroundColor: BackgroundColor,
-  spaceing: number
+  spacing: number
 ): Promise<Buffer> {
   if (!value) {
     throw new Error("Value must be provided");
   }
 
-  if (!isValidSpacing(spaceing)) {
+  if (!isValidSpacing(spacing)) {
     throw new Error("Spacing must be between -80 and 500");
   }
 
@@ -36,7 +36,7 @@ export async function generateImage(
       filePath === " "
         ? sharp({
             create: {
-              width: 81 + spaceing,
+              width: 81 + spacing,
               height: 100,
               channels: 4,
               background: backgroundColor,
@@ -57,8 +57,8 @@ export async function generateImage(
   );
 
   const combinedWidth = metadatas.reduce(
-    (acc, metadata) => acc + (metadata.width || 0) + spaceing, // Adjust for spacing
-    -spaceing // Start with -space to avoid extra spacing at the beginning
+    (acc, metadata) => acc + (metadata.width || 0) + spacing, // Adjust for spacing
+    -spacing // Start with -space to avoid extra spacing at the beginning
   );
 
   const maxHeight = Math.max(
@@ -78,7 +78,7 @@ export async function generateImage(
   const imagesToComposite = imageBuffers.map((buffer, index) => {
     const image = { input: buffer, left: leftOffset, top: 0 };
     leftOffset += metadatas[index].width || 0;
-    leftOffset += spaceing; // Adjust for spacing
+    leftOffset += spacing; // Adjust for spacing
     return image;
   });
 

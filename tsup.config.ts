@@ -7,4 +7,7 @@ export default defineConfig({
   splitting: false,
   sourcemap: true,
   clean: true,
+  terserOptions: {
+    mangle: false,
+  },
 });
