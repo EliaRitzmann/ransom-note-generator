@@ -1,13 +1,13 @@
-# ransom-note
+# ransom-note-generator
 
-![RansomNote](https://github.com/EliaRitzmann/ransom-note/assets/69593308/a9e73129-2c2b-4e49-8765-7a15f882c859)
+![RansomNote](https://github.com/EliaRitzmann/ransom-note-generator/assets/69593308/a9e73129-2c2b-4e49-8765-7a15f882c859)
 
-Ransom-Note is an npm package that provides a simple and easy-to-use interface for generating ransom note-style images and GIFs. It exports a class, `RansomNote`, with various methods to generate and save images and GIFs with customizable options.
+ransom-note-generator is an npm package that provides a simple and easy-to-use interface for generating ransom note-style images and GIFs. It exports a class, `RansomNote`, with various methods to generate and save images and GIFs with customizable options.
 
 ## Installation
 
 ```sh
-npm install @eliaritzmann/ransom-note
+npm install ransom-note-generator-generator
 ```
 
 ## Usage
@@ -23,7 +23,7 @@ The **RansomNote** npm package offers two ways to use it:
 With the RansomNote object, you have the flexibility to set your own RansomNoteOptions for the entire instance. This feature allows you to define default settings once during instantiation, eliminating the need to pass them individually with every function call. If you leave it empty the default values are applied.
 
 ```javascript
-const { RansomNote } = require("ransom-note");
+const { RansomNote } = require("ransom-note-generator");
 
 // Set custom default values when instantiating the object
 const defaultOptions = {
@@ -51,7 +51,7 @@ const { imageBuffer, text, options } = await ransomNote.generateImageBuffer(
 The RansomNote class provides static methods that can be used directly without creating an instance. These methods offer a convenient way to utilize the functionality without the need for instantiation.
 
 ```javascript
-const { RansomNote } = require("ransom-note");
+const { RansomNote } = require("ransom-note-generator");
 
 // Use static method to generate an image buffer
 const { imageBuffer, text, options } = await RansomNote.generateImageBuffer(
@@ -173,7 +173,7 @@ You have the flexibility to specify your preferred background color by providing
 Example with BACKGROUND_COLORS:
 
 ```javascript
-import { BACKGROUND_COLOR, RansomNote } from "ransom-note";
+import { BACKGROUND_COLOR, RansomNote } from "ransom-note-generator";
 
 await RansomNote.generateGIF("Color", 123, BACKGROUND_COLOR.RED, 10, 4, 300);
 ```

@@ -1,5 +1,5 @@
 {
-  "name": "@eliaritzmann/ransom-note",
+  "name": "ransom-note-generator-generator",
   "version": "1.0.0",
   "description": "",
   "main": "./dist/index.js",
@@ -15,14 +15,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/EliaRitzmann/ransom-note.git"
+    "url": "git+https://github.com/EliaRitzmann/ransom-note-generator.git"
   },
   "author": "Eia Ritzmann",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/EliaRitzmann/ransom-note/issues"
+    "url": "https://github.com/EliaRitzmann/ransom-note-generator/issues"
   },
-  "homepage": "https://github.com/EliaRitzmann/ransom-note#readme",
+  "homepage": "https://github.com/EliaRitzmann/ransom-note-generator#readme",
   "devDependencies": {
     "@types/jest": "^29.5.11",
     "jest": "^29.7.0",
