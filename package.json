@@ -1,11 +1,12 @@
 {
   "name": "ransom-note-generator",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "files": [
+    "res",
     "dist"
   ],
   "scripts": {
