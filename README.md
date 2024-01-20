@@ -7,7 +7,7 @@ Ransom-Note is an npm package that provides a simple and easy-to-use interface f
 ## Installation
 
 ```sh
-npm install ransom-note
+npm install @eliaritzmann/ransom-note
 ```
 
 ## Usage
