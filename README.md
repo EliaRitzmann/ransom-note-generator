@@ -7,7 +7,7 @@ ransom-note-generator is an npm package that provides a simple and easy-to-use i
 ## Installation
 
 ```sh
-npm install ransom-note-generator-generator
+npm install ransom-note-generator
 ```
 
 ## Usage
