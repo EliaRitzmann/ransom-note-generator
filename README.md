@@ -80,7 +80,7 @@ const { imageBuffer, text, options } = await RansomNote.generateImageBuffer(
 const ransomNote = new RansomNote(options);
 ```
 
--options (optional): RansomNoteOptions object with properties seed, backgroundColor, and spacing.
+- options (optional): RansomNoteOptions object with properties seed, backgroundColor, and spacing.
 
 **Methods**
 
@@ -90,9 +90,9 @@ generateImageBuffer(text, options);
 
 Generate an image buffer.
 
--text (string): The text to be used in the ransom note.
--options (optional): RansomNoteOptions object with properties seed, backgroundColor, and spacing.
--Returns a Promise resolving to an object with properties imageBuffer, text, and options.
+- text (string): The text to be used in the ransom note.
+- options (optional): RansomNoteOptions object with properties seed, backgroundColor, and spacing.
+- Returns a Promise resolving to an object with properties imageBuffer, text, and options.
 
 ```javascript
 generateAndSaveRansomNoteImage(text, outputFolder, options);
@@ -100,9 +100,9 @@ generateAndSaveRansomNoteImage(text, outputFolder, options);
 
 Generate and save a ransom note image.
 
--text (string): The text to be used in the ransom note.
--outputFolder (string): The path to the output folder where the image will be saved.
--options (optional): RansomNoteOptions object with properties seed, backgroundColor, and spacing.
+- text (string): The text to be used in the ransom note.
+- outputFolder (string): The path to the output folder where the image will be saved.
+- options (optional): RansomNoteOptions object with properties seed, backgroundColor, and spacing.
 Returns a Promise resolving to an object with properties text, filePath, and options.
 
 ```javascript
@@ -111,10 +111,10 @@ generateGIFBuffer(text, numberOfFrames, frameDelay, options);
 
 Generate a GIF buffer.
 
--text (string): The text to be used in the ransom note.
--numberOfFrames (number): The number of frames in the GIF.
--frameDelay (number): The delay between frames in milliseconds.
--options (optional): RansomNoteOptions object with properties seed, backgroundColor, and spacing.
+- text (string): The text to be used in the ransom note.
+- numberOfFrames (number): The number of frames in the GIF.
+- frameDelay (number): The delay between frames in milliseconds.
+- options (optional): RansomNoteOptions object with properties seed, backgroundColor, and spacing.
 Returns a Promise resolving to an object with properties gifBuffer, text, and options.
 
 ```javascript
@@ -129,11 +129,11 @@ generateAndSaveRansomNoteGIF(
 
 Generate and save a ransom note GIF.
 
--text (string): The text to be used in the ransom note.
--outputFolder (string): The path to the output folder where the GIF will be saved.
--numberOfFrames (number): The number of frames in the GIF.
--frameDelay (number): The delay between frames in milliseconds.
--options (optional): RansomNoteOptions object with properties seed, backgroundColor, and spacing.
+- text (string): The text to be used in the ransom note.
+- outputFolder (string): The path to the output folder where the GIF will be saved.
+- numberOfFrames (number): The number of frames in the GIF.
+- frameDelay (number): The delay between frames in milliseconds.
+- options (optional): RansomNoteOptions object with properties seed, backgroundColor, and spacing.
 Returns a Promise resolving to an object with properties text, filePath, and options.
 
 **Static Methods**
@@ -143,9 +143,9 @@ All the methods mentioned above are available as static methods for direct usage
 
 The RansomNoteOptions interface defines the customizable properties that can be used when interacting with the RansomNote class. These properties include:
 
--seed (optional): A numerical seed for randomization.
--backgroundColor (optional): The background color, utilizing the BackgroundColor type.
--spacing (optional): The spacing between characters in the ransom note.
+- seed (optional): A numerical seed for randomization.
+- backgroundColor (optional): The background color, utilizing the BackgroundColor type.
+- spacing (optional): The spacing between characters in the ransom note.
 
 ```javascript
 interface RansomNoteOptions {
