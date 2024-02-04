@@ -1,7 +1,7 @@
 {
   "name": "ransom-note-generator",
-  "version": "1.0.2",
-  "description": "",
+  "version": "1.0.3",
+  "description": "A npm package for effortless creation of ransom-note-style images and GIFs. Customize with predefined settings or external libraries.",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
@@ -35,6 +35,6 @@
   "dependencies": {
     "canvas": "^2.11.2",
     "gifencoder": "^2.0.1",
-    "sharp": "^0.33.2"
+    "sharp": "^0.32.6"
   }
 }
