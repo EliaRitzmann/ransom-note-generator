@@ -87,7 +87,6 @@ export async function generateImage(
     .png()
     .toBuffer();
 
-  //fs.writeFileSync(value + seed + ".png", imageBuffer);
   return imageBuffer;
 }
 
@@ -117,7 +116,7 @@ async function getRandomImagePath(char: string, seed: number, index: number) {
 
   // Find all files that start with the character
   const charFiles = files.filter(
-    (file) => file.startsWith(`${char}-`) && file.endsWith(".png")
+    (file) => file.startsWith(`${char}-`) && file.endsWith(".webp")
   );
 
   if (charFiles.length === 0) {
