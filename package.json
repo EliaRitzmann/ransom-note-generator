@@ -33,8 +33,11 @@
     "typescript": "^5.3.3"
   },
   "dependencies": {
+    "@jimp/wasm-webp": "^1.6.0",
     "canvas": "^2.11.2",
     "gifencoder": "^2.0.1",
+    "gifwrap": "^0.10.1",
+    "jimp": "^1.6.0",
     "sharp": "^0.32.6"
   }
 }

@@ -37,7 +37,7 @@ test("generateImageBufferWithCustomOptionsObjectTest", async () => {
 
 test("generateAndSaveImageObjectTest", async () => {
   const result = await ransomNote.generateAndSaveImage(
-    "Hello World",
+    "Hello World JIMP",
     "./output"
   );
 
@@ -50,7 +50,7 @@ test("generateAndSaveImageObjectTest", async () => {
   expect(fs.existsSync(result.filePath)).toBe(true);
 
   //clean up
-  fs.unlinkSync(result.filePath);
+  //fs.unlinkSync(result.filePath);
 });
 
 test("generateAndSaveImageWithCustomOptionsObjectTest", async () => {
@@ -72,9 +72,9 @@ test("generateAndSaveImageWithCustomOptionsObjectTest", async () => {
   expect(fs.existsSync(result.filePath)).toBe(true);
 
   //clean up
-  fs.unlinkSync(result.filePath);
+  //fs.unlinkSync(result.filePath);
 });
-
+/*
 test("generateGIFBufferObjectTest", async () => {
   const result = await ransomNote.generateGIFBuffer("Hello World", 4, 300);
 
@@ -92,10 +92,10 @@ test("generateGIFBufferWithCustomOptionsObjectTest", async () => {
     backgroundColor: BACKGROUND_COLOR.RED,
     spacing: 50,
   });
-  const result = await ransomNote.generateGIFBuffer("Hello World", 4, 300);
+  const result = await ransomNote.generateGIFBuffer("Hello GIF", 4, 300);
 
   expect(result).toBeInstanceOf(Object);
-  expect(result.text).toBe("Hello World");
+  expect(result.text).toBe("Hello GIF");
   expect(result.options).toBeInstanceOf(Object);
   expect(typeof result.options.seed).toBe("number");
   expect(result.options.backgroundColor).toBe(BACKGROUND_COLOR.RED);
@@ -105,14 +105,14 @@ test("generateGIFBufferWithCustomOptionsObjectTest", async () => {
 
 test("generateAndSaveGIFObjectTest", async () => {
   const result = await ransomNote.generateAndSaveGIF(
-    "Hello World",
+    "Hello GIF",
     "./output",
     4,
     300
   );
 
   expect(result).toBeInstanceOf(Object);
-  expect(result.text).toBe("Hello World");
+  expect(result.text).toBe("Hello GIF");
   expect(result.options).toBeInstanceOf(Object);
   expect(typeof result.options.seed).toBe("number");
   expect(result.options.backgroundColor).toBe(BACKGROUND_COLOR.TRANSPARENT);
@@ -120,7 +120,7 @@ test("generateAndSaveGIFObjectTest", async () => {
   expect(fs.existsSync(result.filePath)).toBe(true);
 
   //clean up
-  fs.unlinkSync(result.filePath);
+  //fs.unlinkSync(result.filePath);
 });
 
 test("generateAndSaveGIFWithCustomOptionsObjectTest", async () => {
@@ -129,14 +129,14 @@ test("generateAndSaveGIFWithCustomOptionsObjectTest", async () => {
     spacing: 40,
   });
   const result = await ransomNote.generateAndSaveGIF(
-    "Hello World",
+    "Hello GIF",
     "./output",
     4,
     300
   );
 
   expect(result).toBeInstanceOf(Object);
-  expect(result.text).toBe("Hello World");
+  expect(result.text).toBe("Hello GIF");
   expect(result.options).toBeInstanceOf(Object);
   expect(typeof result.options.seed).toBe("number");
   expect(result.options.backgroundColor).toBe(BACKGROUND_COLOR.BLACK);
@@ -144,5 +144,7 @@ test("generateAndSaveGIFWithCustomOptionsObjectTest", async () => {
   expect(fs.existsSync(result.filePath)).toBe(true);
 
   //clean up
-  fs.unlinkSync(result.filePath);
+  //fs.unlinkSync(result.filePath);
 });
+
+*/

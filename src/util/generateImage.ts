@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
-import sharp from "sharp";
 import { BackgroundColor } from "../../types";
+import { Jimp } from "jimp";
 
 export async function generateImage(
   value: string,
@@ -31,63 +31,41 @@ export async function generateImage(
     }
   });
 
-  const imageBuffers = await Promise.all(
+  const image = await Promise.all(
     filePathsOrSpaces.map(async (filePath) =>
       filePath === " "
-        ? sharp({
-            create: {
-              width: 81 + spacing,
-              height: 100,
-              channels: 4,
-              background: backgroundColor,
-            },
+        ? new Jimp({
+            width: 81 + spacing,
+            height: 100,
+            color: 0xffffffff,
           })
-            .png()
-            .toBuffer()
-        : await sharp(filePath)
-            .rotate(getRandomRotationAngle(), {
-              background: backgroundColor,
-            })
-            .toBuffer()
+        : await Jimp.read(filePath).then((image) =>
+            image.rotate(getRandomRotationAngle())
+          )
     )
   );
 
-  const metadatas = await Promise.all(
-    imageBuffers.map((buffer) => sharp(buffer).metadata())
-  );
+  // find out the combined width of all images
+  const maxHeight = Math.max(...image.map((img) => img.bitmap.height));
 
-  const combinedWidth = metadatas.reduce(
-    (acc, metadata) => acc + (metadata.width || 0) + spacing, // Adjust for spacing
-    -spacing // Start with -space to avoid extra spacing at the beginning
-  );
+  const combinedWidth = image.reduce((acc, img) => acc + img.bitmap.width, 0);
 
-  const maxHeight = Math.max(
-    ...metadatas.map((metadata) => metadata.height || 0)
-  );
-
-  const baseImage = await sharp({
-    create: {
-      width: combinedWidth,
-      height: maxHeight,
-      channels: 4,
-      background: backgroundColor,
-    },
+  const baseImage = new Jimp({
+    width: combinedWidth,
+    height: maxHeight,
+    color: 0xffffffff,
   });
 
-  let leftOffset = 0;
-  const imagesToComposite = imageBuffers.map((buffer, index) => {
-    const image = { input: buffer, left: leftOffset, top: 0 };
-    leftOffset += metadatas[index].width || 0;
-    leftOffset += spacing; // Adjust for spacing
-    return image;
+  // Draw the images on the base image
+  let xOffset = 0;
+  for (const img of image) {
+    baseImage.composite(img, xOffset, 0);
+    xOffset += img.bitmap.width + spacing;
+  }
+
+  return baseImage.getBuffer("image/png", {
+    quality: 50,
   });
-
-  const imageBuffer = await baseImage
-    .composite(imagesToComposite)
-    .png()
-    .toBuffer();
-
-  return imageBuffer;
 }
 
 async function getRandomImagePath(char: string, seed: number, index: number) {
@@ -96,15 +74,15 @@ async function getRandomImagePath(char: string, seed: number, index: number) {
 
   // Check for the existence of a file or directory specific to your development environment
   const isDevelopment = fs.existsSync(
-    path.resolve(__dirname, "../../res/images/characters")
+    path.resolve(__dirname, "../../res/images/webp")
   );
 
   if (isDevelopment) {
     // Package when run from source
-    dirPath = path.resolve(__dirname, "../../res/images/characters");
+    dirPath = path.resolve(__dirname, "../../res/images/webp");
   } else {
     // Package when installed
-    dirPath = path.resolve(__dirname, "../res/images/characters");
+    dirPath = path.resolve(__dirname, "../res/images/webp");
   }
 
   try {
@@ -116,7 +94,7 @@ async function getRandomImagePath(char: string, seed: number, index: number) {
 
   // Find all files that start with the character
   const charFiles = files.filter(
-    (file) => file.startsWith(`${char}-`) && file.endsWith(".webp")
+    (file) => file.startsWith(`${char}-`) && file.endsWith(".png")
   );
 
   if (charFiles.length === 0) {
